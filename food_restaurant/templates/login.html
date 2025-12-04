@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main {
+            background-color: #d84315;
+            height: auto;
+            width: auto;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .main form {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+        }
+        form input, form button {
+            margin: 8px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Login</h1>
+            <form action="" method="post">
+                <label for="username">Enter username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username">
+
+                <label for="lock">Password</label>
+                <input type="password" id="lock" name="lock" placeholder="Password">
+
+                <button type="submit">Login</button>
+                <button type="button" onclick="window.location.href='{{ url_for('register') }}'">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

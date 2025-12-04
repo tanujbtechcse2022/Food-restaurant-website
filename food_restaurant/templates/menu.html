@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Tasty Food</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Our Menu</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        {% for dish in dishes %}
+            <div class="dish">
+                <img src="{{ url_for('static', filename=dish.image) }}" alt="{{ dish.name }}" width="200">
+                <h2>{{ dish.name }}</h2>
+                <p>Price: {{ dish.price }}</p>
+            </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

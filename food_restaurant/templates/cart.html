@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to right, #f3f3f3, #ffe6cc);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            animation: fadeIn 1.5s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: #cc3300;
+            margin-top: 30px;
+            font-size: 36px;
+            animation: slideDown 1s ease;
+        }
+
+        .cart-table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease;
+        }
+
+        .cart-table th, .cart-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .cart-table th {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #ff6600;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #cc3300;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Cart</h1>
+
+    {% if cart %}
+        <table class="cart-table">
+            <tr>
+                <th>Item</th>
+                <th>Price (Rs)</th>
+            </tr>
+            {% for item in cart %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>{{ total }}</strong></td>
+            </tr>
+        </table>
+
+        <div class="actions">
+            <a href="{{ url_for('clear_cart') }}" class="btn">Clear Cart</a>
+            <a href="{{ url_for('place_order') }}" class="btn">Place Order</a>
+        </div>
+    {% else %}
+        <p style="text-align: center; font-size: 20px;">Your cart is empty.</p>
+    {% endif %}
+
+</body>
+</html>
